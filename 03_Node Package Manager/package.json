@@ -1,0 +1,26 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-gil/NodeJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s-gil/NodeJS/issues"
+  },
+  "homepage": "https://github.com/s-gil/NodeJS#readme",
+  "dependencies": {
+    "joi": "^17.6.0",
+    "mongoose": "^6.4.4",
+    "underscore": "^1.13.4"
+  },
+  "devDependencies": {},
+  "description": ""
+}
