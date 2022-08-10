@@ -2,10 +2,12 @@ const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
 const menus = require('./router/menus');
+const dishes = require('./router/dishes');
 const customers = require('./router/customers');
 
 app.use(express.json());
 app.use('/api/menus', menus);
+app.use('/api/dishes', dishes);
 app.use('/api/customers', customers);
 
 mongoose.connect('mongodb://localhost/restaurant')

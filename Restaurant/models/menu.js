@@ -1,13 +1,17 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
 
-const Menu = mongoose.model('Menu', new mongoose.Schema({
+const menuSchema = new mongoose.Schema({
     name: {
         type: String,
         minlength: 3,
+        maxlength: 255,
+        trim: true,
         required: true
     },
-}));
+})
+
+const Menu = mongoose.model('Menu', menuSchema);
 
 function validateMenu(menu){
     const schema = Joi.object({
@@ -21,3 +25,4 @@ function validateMenu(menu){
 
 module.exports.Menu = Menu;
 module.exports.validate = validateMenu;
+module.exports.menuSchema = menuSchema;
