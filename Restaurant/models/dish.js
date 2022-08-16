@@ -28,8 +28,7 @@ async function validateDish(dish){
             .min(5)
             .max(255)
             .required(),
-        menuId: Joi.string() //We want the client just send the id 
-            .required(),
+        menuId: Joi.objectId().required(), //We want the client just send the id 
         price: Joi.number()
             .required()
     })
@@ -37,5 +36,5 @@ async function validateDish(dish){
     return schema.validate(dish);
 }
 
-exports.Dish = Dish;
-exports.validate = validateDish;
+module.exports.Dish = Dish;
+module.exports.validate = validateDish;

@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
     const menu = await Menu.findById(req.body.menuId);
     if (!menu) return res.status(400).send('Invalid menu.')
 
-    let dish = new Dish({
+    const dish = new Dish({
         name: req.body.name,
         menu: {
             _id: menu._id,
@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
         price: req.body.price
     });
 
-    dish = await dish.save();
+    await dish.save();
     res.send(dish);
 });
 
