@@ -19,6 +19,7 @@ app.use('/api/orders', orders);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 
+
 if(!config.get('jwtPrivateKey')){
     console.log('jwtPrivateKey is not defined');
     process.exit(1);

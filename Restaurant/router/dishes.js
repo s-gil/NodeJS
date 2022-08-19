@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth');
 const {Dish, validate} = require('../models/dish');
 const {Menu} = require('../models/menu');
 const express = require('express');
@@ -15,7 +16,7 @@ router.get('/:id', async (req, res) => {
     res.send(dish);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
         
@@ -35,7 +36,7 @@ router.post('/', async (req, res) => {
     res.send(dish);
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -56,7 +57,7 @@ router.put('/:id', async (req, res) => {
     
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     const dish = await Dish.findByIdAndDelete(req.params.id); 
     if (!dish) return res.status(404).send('The dish with the given ID was not found');
     
