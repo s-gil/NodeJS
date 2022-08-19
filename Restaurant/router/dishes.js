@@ -1,4 +1,5 @@
 const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 const {Dish, validate} = require('../models/dish');
 const {Menu} = require('../models/menu');
 const express = require('express');
@@ -57,7 +58,7 @@ router.put('/:id', auth, async (req, res) => {
     
 });
 
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', [auth, admin], async (req, res) => {
     const dish = await Dish.findByIdAndDelete(req.params.id); 
     if (!dish) return res.status(404).send('The dish with the given ID was not found');
     

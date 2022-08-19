@@ -1,4 +1,5 @@
 const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 const { Customer, validate } = require('../models/customer');
 const express = require('express');
 const router = express.Router();
@@ -25,7 +26,7 @@ router.post('/', auth, async (req, res) => {
     res.send(customer);
 });
 
-router.put('/:id', auth, async (req, res) => {
+router.put('/:id', [auth, admin], async (req, res) => {
     const {error} = validate(req.body);
     if (error) return res.status(404).send(error.details[0].message);
 

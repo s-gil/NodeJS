@@ -1,4 +1,5 @@
 const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 const {Menu, validate} = require('../models/menu');
 const express = require('express');
 const router = express.Router();
@@ -35,7 +36,7 @@ router.put('/:id', auth, async (req, res) => {
     res.send(menu);
 });
 
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', [auth, admin], async (req, res) => {
     const menu = await Menu.findByIdAndDelete(req.params.id); 
     if (!menu) return res.status(404).send('The menu with the given ID was not found');
     

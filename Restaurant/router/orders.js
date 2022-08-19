@@ -1,4 +1,5 @@
 const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 const { Order, validate } = require('../models/order');
 const {Customer} = require('../models/customer');
 const {Dish} = require('../models/dish');
@@ -60,7 +61,7 @@ router.post('/', auth, async (req, res) => {
     session.endSession();
 });
 
-router.put('/:id', auth, async (req, res) => {
+router.put('/:id', [auth, admin], async (req, res) => {
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     
